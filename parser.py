@@ -7,7 +7,7 @@ Created on Wed Mar 6 11:22:09 2019
 """
 
 from tesserocr import PyTessBaseAPI
-images = ['image/sample-gas-receipt.jpg','image/george-s-italian-restaurant.jpg','image/blank-restaurant-receipt.jpg']
+images = ['sample-gas-receipt.jpg','george-s-italian-restaurant.jpg','blank-restaurant-receipt.jpg']
 f= open('st.txt','r+')
 with PyTessBaseAPI() as api:
     for img in images:
