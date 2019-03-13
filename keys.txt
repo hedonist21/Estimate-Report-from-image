@@ -1,0 +1,6 @@
+HOTEL
+Restaurant
+CAFE
+TRUCK
+Ba1ance
+TOTAL

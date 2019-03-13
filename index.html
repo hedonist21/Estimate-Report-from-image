@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>App for Risk Genius</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+table, td, th {
+  border: 2px solid black;
+  margin-left: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 90%;
+}
+
+th {
+  height: 50px;
+}
+.redtext {
+        color: red;
+}
+</style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <script src="utils.js"></script>
+
+</head>
+<body>
+  <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <h1 class="redtext">Weekly Expense Report</h1>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#MyNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+        </div>
+  </nav>
+  <div>
+    <button type= button onClick="window.location='receipt.html';"> View Receipts</button>
+  </div>
+  <div style="overflow-x:auto;">
+  <table>
+    <tr>
+      <th>Days</th>
+      <th>Monday</th>
+      <th>Tuesday</th>
+      <th>Wednesday</th>
+      <th>Thursday</th>
+      <th>Friday</th>
+      <th>Saturday</th>
+      <th>Sunday</th>
+      <th>Total</th>
+    </tr>
+    <tr>
+      <th>Food</th>
+      <td>50$</td>
+      <td>50$</td>
+      <td>50$</td>
+      <td>50$</td>
+      <td>50$</td>
+      <td>50$</td>
+      <td>50$</td>
+    </tr>
+    <tr>
+      <th>Transportation</th>
+      <td>94$</td>
+      <td>94$</td>
+      <td>94$</td>
+      <td>94$</td>
+      <td>94$</td>
+      <td>94$</td>
+      <td>94$</td>
+    </tr>
+    <tr>
+      <th>Misc</th>
+      <td>67$</td>
+      <td>67$</td>
+      <td>67$</td>
+      <td>67$</td>
+      <td>67$</td>
+      <td>67$</td>
+      <td>67$</td>
+    </tr>
+  </table>
+</div>
+<div id="container" style="width: 75%;">
+<canvas id="canvas"></canvas>
+</div>
+<script>
+		var DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+		var color = Chart.helpers.color;
+		var barChartData = {
+			labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+			datasets: [{
+				label: 'Food',
+				backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+				borderColor: window.chartColors.red,
+				borderWidth: 1,
+				data: [
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor()
+				]
+			}, {
+				label: 'Gas',
+				backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+				borderColor: window.chartColors.blue,
+				borderWidth: 1,
+				data: [
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor()
+				]
+			},
+      {
+				label: 'Misc',
+				backgroundColor: color(window.chartColors.grey).alpha(0.5).rgbString(),
+				borderColor: window.chartColors.grey,
+				borderWidth: 1,
+				data: [
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor()
+				]
+			}]
+		};
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myBar = new Chart(ctx, {
+				type: 'bar',
+				data: barChartData,
+				options: {
+					responsive: true,
+					legend: {
+						position: 'top',
+					},
+					title: {
+						display: true,
+						text: 'Bar graph represetation of the tabular data'
+					}
+				}
+			});
+		};
+</script>
+
+
+
+
+</body>
+</html>
